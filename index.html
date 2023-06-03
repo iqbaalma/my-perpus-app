@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="./style.css"/>
+
+  <title>My Perpus App</title>
+
+  <script async defer src="script.js"></script>
+</head>
+<body>
+  <div class="container field-margin">
+    <h1 class="text-center field-margin">MY PERPUS APP</h1>
+    <dialog id="form-input">
+      <div class="close-container">
+        <button type="button" id="close-modal" class="rounded flex place-content-center place-items-center"><i class="fa fa-times" aria-hidden="true"></i></button>
+      </div>
+      <section class="form">
+        <div class="top-border"></div>
+        <h3 class="header text-center">MY PERPUS APP</h3>
+        <form action="" id="form">
+          <div class="flex flex-col full-width field-margin">
+            <label class="weight" for="title">Title<span class="required">*</span></label>
+            <input type="text" name="title" id="title" placeholder="Title" />
+          </div>
+          <div class="flex flex-row field-gap">
+            <div class="flex flex-col full-width field-margin">
+              <label class="weight" for="author">Author<span class="required">*</span></label>
+              <input type="text" name="author" id="author" placeholder="Author">
+            </div>
+            <div class="flex flex-col full-width field-margin">
+              <label class="weight" for="category">Category<span class="required">*</span></label>
+              <select name="category" id="category">
+                <option value="Self Improvements" selected>Self Improvements</option>
+                <option value="Novels">Novels</option>
+                <option value="Poetics">Poetics</option>
+                <option value="Business">Business</option>
+                <option value="Educations">Educations</option>
+                <option value="Technologies">Technologies</option>
+                <option value="Politics">Politics</option>
+                <option value="Fantasy">Fantasy</option>
+              </select>
+            </div>
+          </div>
+          <div class="flex flex-row field-gap">
+            <div class="flex flex-col full-width field-margin">
+              <label class="weight" for="last-read">Last Read<span class="required">*</span></label>
+              <input type="number" min="1" name="last-read" id="last-read" placeholder="Page">
+              <label><small>Check if you have finished reading it</small> <input type="checkbox" name="read" id="read"></label>
+            </div>
+            <div class="flex flex-col full-width field-margin">
+              <label class="weight" for="publisher">Publisher<span class="required">*</span></label>
+              <input type="text" name="publisher" id="publisher" placeholder="Publisher">
+            </div>
+          </div>
+          <div class="flex flex-row">
+            <div class="flex flex-col full-width field-margin">
+              <label class="weight" for="description">Description</label>
+              <textarea name="description" id="description" placeholder="Write something.."></textarea>
+            </div>
+          </div>
+          <div class="flex flex-row full-width field-margin field-gap">
+            <button type="submit" class="grow-2" id="input"><i class="fa fa-check" aria-hidden="true"></i> INPUT</button>
+            <button type="button" id="reset"><i class="fa fa-repeat" aria-hidden="true"></i> RESET</button>
+          </div>
+        </form>
+      </section>
+    </dialog>
+    <section class="data-list">
+      <div class="top-border"></div>
+      <div class="flex flex-row full-width">
+        <button type="button" class="full-width" id="add-book">+ Add Book</button>
+      </div>
+      <ul class="data-container full-width">
+        <li class="data flex flex-col full-width field-margin">
+          <div class="flex flex-row full-width space-between">
+            <h4 class="flex flex-row align-center">Title&nbsp;&nbsp;<small><div class="breadcrumbs">&#62; Self Improvements</div></small></h4>
+            <div class="flex flex-row soft-gap">
+              <button type="button" id="edit" class="rounded warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+              <button type="button" id="delete" class="rounded danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
+            </div>
+          </div>
+          <div class="flex flex-row full-width space-between align-center">
+            <p><small><strong>Published:</strong>&nbsp;November 2021</small></p>
+            <p><small><small>1 Juni 2025</small></small></p>
+          </div>
+        </li>
+        <li class="data flex flex-col full-width field-margin">
+          <div class="flex flex-row full-width space-between">
+            <h4 class="flex flex-row align-center">Title&nbsp;&nbsp;<small><div class="breadcrumbs">&#62; Self Improvements</div></small></h4>
+            <div class="flex flex-row soft-gap">
+              <button type="button" id="edit" class="rounded warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+              <button type="button" id="delete" class="rounded danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
+            </div>
+          </div>
+          <div class="flex flex-row full-width space-between align-center">
+            <p><small><strong>Published:</strong>&nbsp;November 2021</small></p>
+            <p><small><small>1 Juni 2025</small></small></p>
+          </div>
+        </li>
+      </ul>
+    </section>
+  </div>
+</body>
+</html>
