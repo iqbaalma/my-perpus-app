@@ -231,9 +231,9 @@ dialog .close-container #close-modal {
   padding: 16px;
 }
 
-@media (max-width: 577px) {
+@media (min-width: 577px) {
   dialog .close-container {
-    padding: 12px;
+    padding: 0;
   }
 }
 
