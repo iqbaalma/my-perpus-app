@@ -68,7 +68,7 @@ dataContainer.addEventListener('RENDER', (event) => {
     DATA.forEach((data) => {
       const list = bookCard(data);
   
-      dataContainer.appendChild(list);
+      dataContainer.prepend(list);
     });
   }
 });
