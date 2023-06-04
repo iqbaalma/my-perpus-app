@@ -70,12 +70,72 @@
           <div class="flex flex-row">
             <div class="flex flex-col full-width field-margin">
               <label class="weight" for="description">Description</label>
-              <textarea name="description" id="description" placeholder="Write something.."></textarea>
+              <textarea name="description" id="description" placeholder="Description ..."></textarea>
             </div>
           </div>
           <div class="flex flex-row full-width field-margin field-gap columnize">
             <button type="submit" class="grow-2" id="input"><i class="fa fa-check" aria-hidden="true"></i> INPUT</button>
             <button type="reset" class="danger"><i class="fa fa-repeat" aria-hidden="true"></i> RESET</button>
+          </div>
+        </form>
+      </section>
+    </dialog>
+    <dialog id="edit-dialog-popup">
+      <div class="close-container">
+        <button type="button" id="close-modal-edit" class="rounded flex place-content-center place-items-center"><i class="fa fa-times" aria-hidden="true"></i></button>
+      </div>
+      <section class="form">
+        <div class="top-border"></div>
+        <h3 class="header text-center">MY PERPUS APP</h3>
+        <form action="post" id="edit">
+          <div class="flex flex-col full-width field-margin">
+            <label class="weight" for="edit-title">Title<span class="required">*</span></label>
+            <input type="text" name="edit-title" id="edit-title" placeholder="Title" />
+          </div>
+          <div class="flex flex-row field-gap columnize">
+            <div class="flex flex-col full-width field-margin">
+              <label class="weight" for="edit-author">Author<span class="required">*</span></label>
+              <input type="text" name="edit-author" id="edit-author" placeholder="Author">
+            </div>
+            <div class="flex flex-col full-width field-margin">
+              <label class="weight" for="edit-category">Category<span class="required">*</span></label>
+              <select name="edit-category" id="edit-category" required>
+                <option value="null" selected disabled>-- Choose Category --</option>
+                <option value="Self Improvements">Self Improvements</option>
+                <option value="Novels">Novels</option>
+                <option value="Poetics">Poetics</option>
+                <option value="Business">Business</option>
+                <option value="Educations">Educations</option>
+                <option value="Technologies">Technologies</option>
+                <option value="Politics">Politics</option>
+                <option value="Fantasy">Fantasy</option>
+              </select>
+            </div>
+          </div>
+          <div class="flex flex-row field-gap columnize">
+            <div class="flex flex-col full-width field-margin">
+              <label class="weight" for="edit-last-read">Last Read<span class="required">*</span></label>
+              <input type="number" min="1" name="edit-last-read" id="edit-last-read" placeholder="Pages">
+              <label id="edit-finished-confirmation"><small>Finished ?</small> <input type="checkbox" value="finished" name="edit-finished" id="edit-finished"></label>
+            </div>
+            <div class="flex flex-col full-width field-margin">
+              <label class="weight" for="edit-total-pages">Total Pages<span class="required">*</span></label>
+              <input type="number" min="1" name="edit-total-pages" id="edit-total-pages" placeholder="Total Pages">
+              <p><small><span id="display-edit-last-read">0</span>/<span id="display-edit-total-pages">0</span></small></p>
+            </div>
+            <div class="flex flex-col full-width field-margin">
+              <label class="weight" for="edit-publisher">Publisher<span class="required">*</span></label>
+              <input type="text" name="edit-publisher" id="edit-publisher" placeholder="Publisher">
+            </div>
+          </div>
+          <div class="flex flex-row">
+            <div class="flex flex-col full-width field-margin">
+              <label class="weight" for="edit-description">Description</label>
+              <textarea name="edit-description" id="edit-description" placeholder="Description ..."></textarea>
+            </div>
+          </div>
+          <div class="flex flex-row full-width field-margin field-gap columnize">
+            <button type="submit" class="warning full-width" id="edit-input"><i class="fa fa-check" aria-hidden="true"></i> UPDATE</button>
           </div>
         </form>
       </section>
