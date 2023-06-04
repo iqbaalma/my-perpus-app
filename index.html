@@ -13,6 +13,7 @@
 
   <title>My Perpus App</title>
 
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script async defer src="script.js"></script>
 </head>
 <body>
@@ -68,7 +69,7 @@
           </div>
           <div class="flex flex-row full-width field-margin field-gap">
             <button type="submit" class="grow-2" id="input"><i class="fa fa-check" aria-hidden="true"></i> INPUT</button>
-            <button type="reset" class="danger" onclick="return confirm('Yakin ingin mereset form ?')"><i class="fa fa-repeat" aria-hidden="true"></i> RESET</button>
+            <button type="reset" class="danger"><i class="fa fa-repeat" aria-hidden="true"></i> RESET</button>
           </div>
         </form>
       </section>
@@ -78,34 +79,7 @@
       <div class="flex flex-row full-width">
         <button type="button" class="full-width" id="add-book">+ Add Book</button>
       </div>
-      <ul class="data-container full-width">
-        <li class="data flex flex-col full-width field-margin">
-          <div class="flex flex-row full-width space-between">
-            <h4 class="flex flex-row align-center">Title&nbsp;&nbsp;<small><div class="breadcrumbs">&#62; Self Improvements</div></small></h4>
-            <div class="flex flex-row soft-gap">
-              <button type="button" id="edit" class="rounded warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-              <button type="button" id="delete" class="rounded danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
-            </div>
-          </div>
-          <div class="flex flex-row full-width space-between align-center">
-            <p><small><strong>Published:</strong>&nbsp;November 2021</small></p>
-            <p><small><small>1 Juni 2025</small></small></p>
-          </div>
-        </li>
-        <li class="data flex flex-col full-width field-margin">
-          <div class="flex flex-row full-width space-between">
-            <h4 class="flex flex-row align-center">Title&nbsp;&nbsp;<small><div class="breadcrumbs">&#62; Self Improvements</div></small></h4>
-            <div class="flex flex-row soft-gap">
-              <button type="button" id="edit" class="rounded warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-              <button type="button" id="delete" class="rounded danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
-            </div>
-          </div>
-          <div class="flex flex-row full-width space-between align-center">
-            <p><small><strong>Published:</strong>&nbsp;November 2021</small></p>
-            <p><small><small>1 Juni 2025</small></small></p>
-          </div>
-        </li>
-      </ul>
+      <ul id="data-container" class="data-container full-width"></ul>
     </section>
   </div>
 </body>
