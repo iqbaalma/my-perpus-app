@@ -63,7 +63,7 @@ dataContainer.addEventListener('RENDER', (event) => {
     const message = document.createElement('span');
     message.textContent = '-- No Data --';
 
-    dataContainer.appendChild(message);
+    dataContainer.prepend(message);
   } else {
     DATA.forEach((data) => {
       const list = bookCard(data);
