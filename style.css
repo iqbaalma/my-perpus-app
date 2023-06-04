@@ -46,7 +46,7 @@ body {
 }
 
 @media (max-width: 576px) {
-  .flex-row {
+  .columnize {
     flex-direction: column;
   }
 }
