@@ -229,7 +229,8 @@ dialog .close-container {
   z-index: 10000;
 }
 
-dialog .close-container #close-modal {
+dialog .close-container #close-modal,
+dialog .close-container #close-modal-edit {
   min-width: 44px;
   max-width: 44px;
   min-height: 44px;
