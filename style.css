@@ -238,6 +238,10 @@ dialog .close-container #close-modal {
   }
 }
 
+[disabled] {
+  background-color: #eee;
+}
+
 /* DATA LIST */
 .data-list {
   position: relative;

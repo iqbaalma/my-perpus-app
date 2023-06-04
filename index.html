@@ -13,7 +13,7 @@
 
   <title>My Perpus App</title>
 
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
   <script async defer src="script.js"></script>
 </head>
 <body>
@@ -53,8 +53,13 @@
           <div class="flex flex-row field-gap">
             <div class="flex flex-col full-width field-margin">
               <label class="weight" for="last-read">Last Read<span class="required">*</span></label>
-              <input type="number" min="1" name="last-read" id="last-read" placeholder="Page">
-              <label><small>Check if you have finished reading it</small> <input type="checkbox" name="read" id="read"></label>
+              <input type="number" min="1" name="last-read" id="last-read" placeholder="Pages">
+              <label><small>Finished ?</small> <input type="checkbox" value="finished" name="finished" id="finished"></label>
+            </div>
+            <div class="flex flex-col full-width field-margin">
+              <label class="weight" for="total-pages">Total Pages<span class="required">*</span></label>
+              <input type="number" min="1" name="total-pages" id="total-pages" placeholder="Total Pages">
+              <p><small><span id="display-last-read">0</span>/<span id="display-total-pages">0</span></small></p>
             </div>
             <div class="flex flex-col full-width field-margin">
               <label class="weight" for="publisher">Publisher<span class="required">*</span></label>

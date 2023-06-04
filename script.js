@@ -53,11 +53,56 @@ dataContainer.addEventListener('RENDER', (event) => {
 
   dataContainer.innerHTML = '';
 
-  DATA.forEach((data) => {
-    const list = bookCard(data);
+  if (DATA.length === 0) {
+    const message = document.createElement('span');
+    message.textContent = '-- No Data --';
 
-    dataContainer.appendChild(list);
-  });
+    dataContainer.appendChild(message);
+  } else {
+    DATA.forEach((data) => {
+      const list = bookCard(data);
+  
+      dataContainer.appendChild(list);
+    });
+  }
+});
+
+const lastReadInput = document.getElementById('last-read');
+const finishedInput = document.getElementById('finished');
+finishedInput.addEventListener('change', () => {
+  if (finishedInput.checked) {
+    lastReadInput.placeholder = 'Finished';
+    lastReadInput.disabled = true;
+  } else {
+    lastReadInput.placeholder = 'Page';
+    lastReadInput.disabled = false;
+  }
+});
+
+const totalPages = document.getElementById('total-pages');
+const displayLastRead = document.getElementById('display-last-read');
+const displayTotalPages = document.getElementById('display-total-pages');
+
+lastReadInput.addEventListener('change', () => {
+  let lastNumberInput;
+  if (lastReadInput.value >= totalPages.value) {
+    lastReadInput.value = totalPages.value;
+    lastNumberInput = lastReadInput.value;
+    lastReadInput.value = 'Finished';
+    finishedInput.checked = true;
+    finishedInput.dispatchEvent(new Event('change'));
+  }
+
+  if (lastNumberInput != null || lastNumberInput != undefined) {
+    displayLastRead.textContent = lastNumberInput;
+    return;
+  }
+
+  displayLastRead.textContent = lastReadInput.value;
+});
+
+totalPages.addEventListener('change', () => {
+  displayTotalPages.textContent = totalPages.value;
 });
 
 const form = document.getElementById('form');
@@ -134,3 +179,8 @@ form.addEventListener('submit', (event) => {
 
   console.log(book);
 });
+
+// Reset form after reloading page
+window.addEventListener('load', () => {
+  form.reset();
+})
