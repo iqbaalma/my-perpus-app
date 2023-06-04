@@ -38,8 +38,9 @@
             </div>
             <div class="flex flex-col full-width field-margin">
               <label class="weight" for="category">Category<span class="required">*</span></label>
-              <select name="category" id="category">
-                <option value="Self Improvements" selected>Self Improvements</option>
+              <select name="category" id="category" required>
+                <option value="null" selected disabled>-- Choose Category --</option>
+                <option value="Self Improvements">Self Improvements</option>
                 <option value="Novels">Novels</option>
                 <option value="Poetics">Poetics</option>
                 <option value="Business">Business</option>
@@ -54,7 +55,7 @@
             <div class="flex flex-col full-width field-margin">
               <label class="weight" for="last-read">Last Read<span class="required">*</span></label>
               <input type="number" min="1" name="last-read" id="last-read" placeholder="Pages">
-              <label><small>Finished ?</small> <input type="checkbox" value="finished" name="finished" id="finished"></label>
+              <label id="finished-confirmation"><small>Finished ?</small> <input type="checkbox" value="finished" name="finished" id="finished"></label>
             </div>
             <div class="flex flex-col full-width field-margin">
               <label class="weight" for="total-pages">Total Pages<span class="required">*</span></label>
