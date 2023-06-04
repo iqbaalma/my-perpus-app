@@ -381,8 +381,7 @@ editButton.forEach((editSession) => {
   editSession.addEventListener('click', (event) => {
     event.stopImmediatePropagation();
 
-    let bookId = editSession.getAttribute('data-id');
-    bookId = Number(bookId);
+    const bookId = Number(editSession.getAttribute('data-id'));
     console.log(bookId);
 
     const data = DATA.find((book) => book.id === bookId);
@@ -503,3 +502,52 @@ editFormCloseModal.addEventListener('click', (event) => {
 const deleteButton = document.querySelectorAll('.delete-button');
 
 console.log(deleteButton);
+
+/*
+==============================================
+
+@iqbaalma error
+
+*/
+
+deleteButton.forEach((deleteSession) => {
+  deleteSession.addEventListener('click', () => {
+    const bookId = Number(deleteSession.getAttribute('data-id'));
+    console.log(bookId);
+
+    const index = DATA.findIndex((book) => book.id === bookId);
+    console.log(index);
+    
+    // Delete the object at the found index
+    if (index !== -1) {
+      DATA.splice(index, 1);
+
+      console.log(DATA);
+
+      dataContainer.innerHTML = '';
+
+      // if (DATA.length === 0) {
+      //   const message = document.createElement('li');
+      //   message.style = 'text-align: center; font-size: 28px;';
+      //   message.textContent = '-- 🤪 --'.trim();
+
+      //   dataContainer.appendChild(message);
+      // } else {
+      //   DATA.forEach((data) => {
+      //     const list = bookCard(data);
+    
+      //     dataContainer.appendChild(list);
+      //   });
+      // }
+      // // console.log(DATA);
+      DATA.forEach((data) => {
+        const list = bookCard(data);
+        dataContainer.appendChild(list);
+      });
+
+      console.log(DATA);
+    } else {
+      console.log(-1);
+    }
+  })
+});
