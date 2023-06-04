@@ -16,13 +16,15 @@ btnCloseModal.addEventListener('click', (event) => {
 
 const bookCard = (obj) => {
   const {
-    id,
+    id, // unused
     title,
     author,
     category,
     publisher,
-    description,
-    createdAt
+    description, // unused
+    createdAt,
+    lastRead,
+    totalPages
   } = obj;
 
   const cardContainer = document.createElement('li');
@@ -39,8 +41,12 @@ const bookCard = (obj) => {
       </div>
     </div>
     <div class="flex flex-row full-width space-between align-center">
-      <p><small><strong>Publisher:</strong>&nbsp;${publisher}</small></p>
+      <p><small>Author: <em>${author}</em></small></p>
       <p><small><small>${createdAt}</small></small></p>
+    </div>
+    <div class="flex flex-row full-width space-between align-center">
+      <p><small>${publisher}</small></p>
+      <p><small><small>${lastRead}/${totalPages}</small></small></p>
     </div>
   `.trim();
 
@@ -67,42 +73,50 @@ dataContainer.addEventListener('RENDER', (event) => {
   }
 });
 
+const totalPagesInput = document.getElementById('total-pages');
+const displayLastRead = document.getElementById('display-last-read');
+const displayTotalPages = document.getElementById('display-total-pages');
+
 const lastReadInput = document.getElementById('last-read');
 const finishedInput = document.getElementById('finished');
+const finishedInputConfirmation = document.getElementById('finished-confirmation');
 finishedInput.addEventListener('change', () => {
   if (finishedInput.checked) {
     lastReadInput.placeholder = 'Finished';
     lastReadInput.disabled = true;
+    lastReadInput.value = totalPagesInput.value;
+    lastReadInput.dispatchEvent(new Event('change'));
   } else {
     lastReadInput.placeholder = 'Page';
     lastReadInput.disabled = false;
   }
 });
 
-const totalPages = document.getElementById('total-pages');
-const displayLastRead = document.getElementById('display-last-read');
-const displayTotalPages = document.getElementById('display-total-pages');
-
 lastReadInput.addEventListener('change', () => {
-  let lastNumberInput;
-  if (lastReadInput.value >= totalPages.value) {
-    lastReadInput.value = totalPages.value;
-    lastNumberInput = lastReadInput.value;
-    lastReadInput.value = 'Finished';
-    finishedInput.checked = true;
-    finishedInput.dispatchEvent(new Event('change'));
-  }
-
-  if (lastNumberInput != null || lastNumberInput != undefined) {
-    displayLastRead.textContent = lastNumberInput;
-    return;
-  }
-
+  lastReadInput.max = totalPagesInput.value;
   displayLastRead.textContent = lastReadInput.value;
 });
 
-totalPages.addEventListener('change', () => {
-  displayTotalPages.textContent = totalPages.value;
+lastReadInput.addEventListener('block-input', () => {
+  if (totalPagesInput.value === 1 || totalPagesInput.value == '') {
+    lastReadInput.disabled = true;
+    finishedInputConfirmation.style.display = 'none';
+  }
+});
+lastReadInput.dispatchEvent(new Event('block-input'));
+
+lastReadInput.addEventListener('allow-input', () => {
+  if (totalPagesInput.value !== 1 || totalPagesInput.value != '') {
+    lastReadInput.disabled = false;
+    finishedInputConfirmation.style.display = 'inline';
+  }
+});
+
+totalPagesInput.addEventListener('change', () => {
+  lastReadInput.dispatchEvent(new Event('block-input'));
+  lastReadInput.dispatchEvent(new Event('allow-input'));
+
+  displayTotalPages.textContent = totalPagesInput.value;
 });
 
 const form = document.getElementById('form');
@@ -114,6 +128,46 @@ form.addEventListener('submit', (event) => {
   const categoryValue = document.getElementById('category').value;
   const publisherValue = document.getElementById('publisher').value;
   const descriptionValue = document.getElementById('description').value;
+
+  const lastReadValue = lastReadInput.value;
+  const totalPagesValue = totalPagesInput.value;
+
+  if (
+    titleValue === '' ||
+    titleValue == null ||
+    titleValue == undefined
+  ) {
+    alert('Title is empty!');
+    return false;
+  }
+
+  if (
+    authorValue === '' ||
+    authorValue == null ||
+    authorValue == undefined
+  ) {
+    alert('Author is empty!');
+    return false;
+  }
+
+  if (
+    categoryValue === '' ||
+    categoryValue == 'null' ||
+    categoryValue == null ||
+    categoryValue == undefined
+  ) {
+    alert('Category is empty!');
+    return false;
+  }
+
+  if (
+    publisherValue === '' ||
+    publisherValue == null ||
+    publisherValue == undefined
+  ) {
+    alert('Publisher is empty!');
+    return false;
+  }
 
   const generateId = () => {
     const minId = 1;
@@ -139,6 +193,10 @@ form.addEventListener('submit', (event) => {
    * - valid string value.
    * @param {string} description
    * - valid string value.
+   * @param {Number} lastRead
+   * - valid Number value.
+   * @param {Number} totalPages
+   * - valid Number value.
    * @return {Object}
    * return `Object` with value initialized.
    */
@@ -147,7 +205,9 @@ form.addEventListener('submit', (event) => {
     author,
     category,
     publisher,
-    description
+    description,
+    lastRead,
+    totalPages
   }) => {
     return {
       id: generateId(),
@@ -156,6 +216,8 @@ form.addEventListener('submit', (event) => {
       category: category,
       publisher: publisher,
       description: description,
+      lastRead: Number(parseInt(lastRead)),
+      totalPages: Number(parseInt(totalPages)),
       createdAt: new Date().toLocaleDateString('en-GB').split('/').join('-'),
     };
   };
@@ -166,7 +228,9 @@ form.addEventListener('submit', (event) => {
     author: authorValue,
     category: categoryValue,
     publisher: publisherValue,
-    description: descriptionValue
+    description: descriptionValue,
+    lastRead: lastReadValue,
+    totalPages: totalPagesValue
   });
 
   DATA.push(book);

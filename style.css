@@ -45,6 +45,12 @@ body {
   flex-direction: row;
 }
 
+@media (max-width: 576px) {
+  .flex-row {
+    flex-direction: column;
+  }
+}
+
 .flex-col {
   flex-direction: column;
 }
