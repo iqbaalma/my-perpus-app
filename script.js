@@ -93,17 +93,22 @@ finishedInput.addEventListener('change', () => {
 });
 
 lastReadInput.addEventListener('change', () => {
+  if (lastReadInput.value === totalPagesInput.value) {
+    finishedInput.checked = true;
+    finishedInput.dispatchEvent(new Event('change'));
+  }
+
   lastReadInput.max = totalPagesInput.value;
   displayLastRead.textContent = lastReadInput.value;
 });
 
-lastReadInput.addEventListener('block-input', () => {
+lastReadInput.addEventListener('hide-input', () => {
   if (totalPagesInput.value === 1 || totalPagesInput.value == '') {
     lastReadInput.disabled = true;
     finishedInputConfirmation.style.display = 'none';
   }
 });
-lastReadInput.dispatchEvent(new Event('block-input'));
+lastReadInput.dispatchEvent(new Event('hide-input'));
 
 lastReadInput.addEventListener('allow-input', () => {
   if (totalPagesInput.value !== 1 || totalPagesInput.value != '') {
@@ -113,9 +118,16 @@ lastReadInput.addEventListener('allow-input', () => {
 });
 
 totalPagesInput.addEventListener('change', () => {
-  lastReadInput.dispatchEvent(new Event('block-input'));
+  lastReadInput.dispatchEvent(new Event('hide-input'));
   lastReadInput.dispatchEvent(new Event('allow-input'));
 
+  if (lastReadInput.value < totalPagesInput.value) {
+    finishedInput.checked = false;
+    finishedInput.dispatchEvent(new Event('change'));
+  }
+
+  // Reassign max value for lastRead
+  lastReadInput.max = totalPagesInput.value;
   displayTotalPages.textContent = totalPagesInput.value;
 });
 
